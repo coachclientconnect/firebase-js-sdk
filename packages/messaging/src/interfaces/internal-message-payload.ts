@@ -26,6 +26,7 @@ export interface MessagePayloadInternal {
   fcmOptions?: FcmOptionsInternal;
   messageType?: MessageType;
   isFirebaseMessaging?: boolean;
+  isNewClient?: boolean;
   from: string;
   fcmMessageId: string;
   productId: number;

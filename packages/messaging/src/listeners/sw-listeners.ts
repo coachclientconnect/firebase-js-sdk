@@ -150,6 +150,7 @@ export async function onNotificationClick(
 
   if (!client) {
     client = await self.clients.openWindow(link);
+    internalPayload.isNewClient = true;
 
     // Wait three seconds for the client to initialize and set up the message handler so that it
     // can receive the message.
