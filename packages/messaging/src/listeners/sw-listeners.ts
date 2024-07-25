@@ -85,9 +85,13 @@ export async function onPush(
   }
 
   // foreground handling: eventually passed to onMessage hook
-  const clientList = await getClientList();
-  if (hasVisibleClients(clientList)) {
-    return sendMessagePayloadInternalToWindows(clientList, internalPayload);
+  // send all data messages to foreground; send notification messages if 
+  // not bypassed
+  if (!internalPayload.notification || !messaging.bypassForegroundNotifications) {
+    const clientList = await getClientList();
+    if (hasVisibleClients(clientList)) {
+      return sendMessagePayloadInternalToWindows(clientList, internalPayload);
+    }
   }
 
   // background handling: display if possible and pass to onBackgroundMessage hook
