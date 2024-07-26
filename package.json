@@ -21,7 +21,7 @@
     "performance"
   ],
   "scripts": {
-    "ccc:release": "ts-node-script scripts/release/cli.ts canary --dry-run",
+    "ccc:release": "ts-node-script scripts/release/cli.ts ccc",
     "ccc:publish": "gcloud storage cp packages/firebase/firebase-* gs://ccc-core-a-1-public/firebase-js-sdk/10.12.4",
     "dev": "lerna run --parallel --scope @firebase/* --scope firebase dev",
     "build": "lerna run --scope @firebase/* --scope firebase build",
