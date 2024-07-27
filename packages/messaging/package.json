@@ -24,7 +24,7 @@
     },
     "./package.json": "./package.json"
   },
-  "typings": "dist/src/index.d.ts",
+  "typings": "./dist/index-public.d.ts",
   "files": [
     "dist",
     "sw/package.json"
@@ -50,7 +50,7 @@
   },
   "license": "Apache-2.0",
   "peerDependencies": {
-    "@firebase/app": "0.x"
+    "@firebase/app": "0.10.2"
   },
   "dependencies": {
     "@firebase/installations": "0.6.6",

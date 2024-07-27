@@ -117,7 +117,7 @@
     "typings:public": "node ../../scripts/build/use_typings.js ./dist/auth-public.d.ts"
   },
   "peerDependencies": {
-    "@firebase/app": "0.x",
+    "@firebase/app": "0.10.2",
     "@react-native-async-storage/async-storage": "^1.18.1"
   },
   "peerDependenciesMeta": {
@@ -154,7 +154,7 @@
   "bugs": {
     "url": "https://github.com/firebase/firebase-js-sdk/issues"
   },
-  "typings": "dist/auth.d.ts",
+  "typings": "./dist/auth-public.d.ts",
   "nyc": {
     "extension": [
       ".ts"

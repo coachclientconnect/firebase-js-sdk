@@ -38,7 +38,7 @@
     "typings:internal": "node ../../scripts/build/use_typings.js ./dist/src/index.d.ts"
   },
   "peerDependencies": {
-    "@firebase/app": "0.x"
+    "@firebase/app": "0.10.2"
   },
   "dependencies": {
     "@firebase/installations": "0.6.6",
@@ -62,7 +62,7 @@
   "bugs": {
     "url": "https://github.com/firebase/firebase-js-sdk/issues"
   },
-  "typings": "dist/src/index.d.ts",
+  "typings": "./dist/remote-config-public.d.ts",
   "nyc": {
     "extension": [
       ".ts"

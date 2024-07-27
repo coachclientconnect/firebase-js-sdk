@@ -12,8 +12,8 @@
     "index.d.ts"
   ],
   "peerDependencies": {
-    "@firebase/app-types": "0.x",
-    "@firebase/util": "1.x"
+    "@firebase/app-types": "0.9.1",
+    "@firebase/util": "1.9.5"
   },
   "repository": {
     "directory": "packages/storage-types",

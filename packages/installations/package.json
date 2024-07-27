@@ -15,7 +15,7 @@
     },
     "./package.json": "./package.json"
   },
-  "typings": "dist/src/index.d.ts",
+  "typings": "./dist/installations-public.d.ts",
   "license": "Apache-2.0",
   "files": [
     "dist"
@@ -60,7 +60,7 @@
     "typescript": "4.7.4"
   },
   "peerDependencies": {
-    "@firebase/app": "0.x"
+    "@firebase/app": "0.10.2"
   },
   "dependencies": {
     "@firebase/util": "1.9.5",

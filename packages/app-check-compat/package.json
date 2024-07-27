@@ -32,7 +32,7 @@
     "add-compat-overloads": "ts-node-script ../../scripts/build/create-overloads.ts -i ../app-check/dist/app-check-public.d.ts -o dist/src/index.d.ts -a -r AppCheck:FirebaseAppCheck -r FirebaseApp:FirebaseAppCompat --moduleToEnhance @firebase/app-check"
   },
   "peerDependencies": {
-    "@firebase/app-compat": "0.x"
+    "@firebase/app-compat": "0.2.32"
   },
   "dependencies": {
     "@firebase/app-check": "0.8.3",

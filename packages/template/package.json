@@ -40,8 +40,8 @@
     "test:node": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc --reporter lcovonly -- mocha src/**/*.test.* --config ../../config/mocharc.node.js"
   },
   "peerDependencies": {
-    "@firebase/app": "0.x",
-    "@firebase/app-types": "0.x"
+    "@firebase/app": "0.10.2",
+    "@firebase/app-types": "0.9.1"
   },
   "dependencies": {
     "@firebase/template-types": "0.2.1",

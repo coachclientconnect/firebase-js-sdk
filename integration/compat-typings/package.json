@@ -7,7 +7,7 @@
     "test:ci": "node ../../scripts/run_tests_in_ci.js -s test"
   },
   "dependencies": {
-    "firebase": "*"
+    "firebase": "10.11.1"
   },
   "devDependencies": {
     "typescript": "4.7.4"

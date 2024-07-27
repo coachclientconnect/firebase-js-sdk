@@ -12,7 +12,7 @@
     "index.d.ts"
   ],
   "peerDependencies": {
-    "@firebase/app-types": "0.x"
+    "@firebase/app-types": "0.9.1"
   },
   "repository": {
     "directory": "packages/installations-types",

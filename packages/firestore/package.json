@@ -106,7 +106,7 @@
     "tslib": "^2.1.0"
   },
   "peerDependencies": {
-    "@firebase/app": "0.x"
+    "@firebase/app": "0.10.2"
   },
   "devDependencies": {
     "@firebase/app": "0.10.2",
@@ -138,7 +138,7 @@
   "bugs": {
     "url": "https://github.com/firebase/firebase-js-sdk/issues"
   },
-  "typings": "dist/firestore/src/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "nyc": {
     "extension": [
       ".ts"
