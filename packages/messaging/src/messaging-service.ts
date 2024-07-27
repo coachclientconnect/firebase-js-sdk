@@ -34,6 +34,10 @@ export class MessagingService implements _FirebaseService {
   // logging is only done with end user consent. Default to false.
   deliveryMetricsExportedToBigQueryEnabled: boolean = false;
 
+  // if true, notifications are not sent to foreground clients
+  // and instead are sent to the background handler
+  bypassForegroundNotifications: boolean = false;
+
   onBackgroundMessageHandler:
     | NextFn<MessagePayload>
     | Observer<MessagePayload>
