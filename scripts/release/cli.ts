@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 import * as yargs from 'yargs';
+import { runCccRelease } from './ccc';
 import { runPrerelease } from './prerelease';
 import { runRelease } from './release';
 import { bannerText } from './utils/banner';
@@ -96,6 +97,12 @@ yargs
       }
     },
     argv => runPrerelease(argv)
+  )
+  .command(
+    'ccc',
+    'make a ccc release',
+    {},
+    argv => runCccRelease()
   )
   .demandCommand()
   .help().argv;
