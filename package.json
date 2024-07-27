@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "ccc:release": "ts-node-script scripts/release/cli.ts ccc",
-    "ccc:prerelease": "find packages/firebase -type f -name 'firebase-*' -exec sed -i 's|https://www.gstatic.com|https://storage.googleapis.com/ccc-core-a-1-public|g' {} \\;",
+    "ccc:prepublish": "find packages/firebase -type f -name 'firebase-*' -exec sed -i 's|https://www.gstatic.com|https://storage.googleapis.com/ccc-core-a-1-public|g' {} \\;",
     "ccc:publish": "gcloud storage cp packages/firebase/firebase-* gs://ccc-core-a-1-public/firebasejs/10.11.1",
     "dev": "lerna run --parallel --scope @firebase/* --scope firebase dev",
     "build": "lerna run --scope @firebase/* --scope firebase build",
