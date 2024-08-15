@@ -84,10 +84,13 @@ export async function onPush(
     await stageLog(messaging, internalPayload);
   }
 
-  // foreground handling: eventually passed to onMessage hook
-  const clientList = await getClientList();
-  if (hasVisibleClients(clientList)) {
-    return sendMessagePayloadInternalToWindows(clientList, internalPayload);
+  // foreground handling: eventually passed to onMessage hook. if this is a notification,
+  // only send it if skipForegroundNotifications is false
+  if ((!internalPayload.notification) || (!messaging.skipForegroundNotifications)) {
+    const clientList = await getClientList();
+    if (hasVisibleClients(clientList)) {
+      return sendMessagePayloadInternalToWindows(clientList, internalPayload);
+    }
   }
 
   // background handling: display if possible and pass to onBackgroundMessage hook

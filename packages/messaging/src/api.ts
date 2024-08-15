@@ -36,6 +36,7 @@ import { getToken as _getToken } from './api/getToken';
 import { onBackgroundMessage as _onBackgroundMessage } from './api/onBackgroundMessage';
 import { onMessage as _onMessage } from './api/onMessage';
 import { _setDeliveryMetricsExportedToBigQueryEnabled } from './api/setDeliveryMetricsExportedToBigQueryEnabled';
+import { _setSkipForegroundNotifications } from './api/setSkipForegroundNotifications';
 
 /**
  * Retrieves a Firebase Cloud Messaging instance.
@@ -187,4 +188,22 @@ export function experimentalSetDeliveryMetricsExportedToBigQueryEnabled(
 ): void {
   messaging = getModularInstance(messaging);
   return _setDeliveryMetricsExportedToBigQueryEnabled(messaging, enable);
+}
+
+/**
+ * When skip is true, the messaging service worker will not send received push messages
+ * that contain notification data to foreground window clients; rather, the service worker
+ * will handle notification messages in the background, displaying a notification message.
+ *
+ * @param messaging - The `FirebaseMessaging` instance.
+ * @param skip - Whether the foreground message handler should be skipped for notifications
+ *
+ * @public
+ */
+export function setSkipForegroundNotifications(
+  messaging: Messaging,
+  skip: boolean
+): void {
+  messaging = getModularInstance(messaging);
+  return _setSkipForegroundNotifications(messaging, skip);
 }

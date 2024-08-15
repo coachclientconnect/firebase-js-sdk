@@ -33,6 +33,9 @@ export class MessagingService implements _FirebaseService {
   vapidKey?: string;
   // logging is only done with end user consent. Default to false.
   deliveryMetricsExportedToBigQueryEnabled: boolean = false;
+  // allow foreground notifications to be skipped, falling back
+  // to default background handling. Default to false.
+  skipForegroundNotifications: boolean = false;
 
   onBackgroundMessageHandler:
     | NextFn<MessagePayload>

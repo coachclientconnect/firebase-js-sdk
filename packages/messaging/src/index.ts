@@ -31,7 +31,8 @@ export {
   getToken,
   deleteToken,
   onMessage,
-  getMessagingInWindow as getMessaging
+  getMessagingInWindow as getMessaging,
+  setSkipForegroundNotifications
 } from './api';
 export { isWindowSupported as isSupported } from './api/isSupported';
 export * from './interfaces/public-types';
