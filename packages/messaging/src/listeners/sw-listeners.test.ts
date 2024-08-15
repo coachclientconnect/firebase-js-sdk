@@ -81,6 +81,18 @@ const DISPLAY_MESSAGE: MessagePayloadInternal = {
   productId: 123
 };
 
+// internal message payload that contains a data payload but no notification payload or link
+const DATA_MESSAGE: MessagePayloadInternal = {
+  data: {
+  },
+  from: 'from',
+  // eslint-disable-next-line camelcase
+  collapse_key: 'collapse',
+  // eslint-disable-next-line camelcase
+  fcmMessageId: 'mid',
+  productId: 123
+};
+
 // maxActions is an experimental property and not part of the official
 // TypeScript interface
 // https://developer.mozilla.org/en-US/docs/Web/API/Notification/maxActions
@@ -211,6 +223,69 @@ describe('SwController', () => {
         }
       });
     });
+
+    it('does not send a notification message to window clients if skipForegroundNotifications is true', async () => {
+
+      // normally, with this set to false, a visible client would be sent
+      // a pushed message via postMessage. but with this set to false, the message
+      // will be sent to showNotification instead, just as if there were no
+      // visible clients
+      messaging.skipForegroundNotifications = true;
+
+      const client: Writable<WindowClient> = (await self.clients.openWindow(
+        'https://example.org'
+      ))!;
+      client.visibilityState = 'visible';
+      const postMessageSpy = spy(client, 'postMessage');
+      const showNotificationSpy = spy(self.registration, 'showNotification');
+
+      await callEventListener(
+        makeEvent('push', {
+          data: {
+            json: () => DISPLAY_MESSAGE
+          }
+        })
+      );
+
+      expect(postMessageSpy).not.to.have.been.called;
+      expect(showNotificationSpy).to.have.been.calledWith('title', {
+        ...DISPLAY_MESSAGE.notification,
+        data: {
+          [FCM_MSG]: DISPLAY_MESSAGE
+        }
+      });
+    });
+
+    it('sends a data message to window clients even if skipForegroundNotifications is true', async () => {
+
+      // setting this to true here has no effect on a message with no
+      // notification payload
+      messaging.skipForegroundNotifications = true;
+
+      const client: Writable<WindowClient> = (await self.clients.openWindow(
+        'https://example.org'
+      ))!;
+      client.visibilityState = 'visible';
+      const postMessageSpy = spy(client, 'postMessage');
+      const showNotificationSpy = spy(self.registration, 'showNotification');
+
+      await callEventListener(
+        makeEvent('push', {
+          data: {
+            json: () => DATA_MESSAGE,
+          }
+        })
+      );
+
+      const expectedMessage: MessagePayloadInternal = {
+        ...DATA_MESSAGE,
+        messageType: MessageType.PUSH_RECEIVED
+      };
+      expect(postMessageSpy).to.have.been.calledOnceWith(expectedMessage);
+      expect(showNotificationSpy).not.to.have.been.called;
+    });
+
+
 
     it('displays a notification if a window client does not exist', async () => {
       const showNotificationSpy = spy(self.registration, 'showNotification');
