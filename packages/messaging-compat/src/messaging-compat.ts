@@ -24,7 +24,8 @@ import {
   MessagePayload,
   deleteToken,
   getToken,
-  onMessage
+  onMessage,
+  setSkipForegroundNotifications,
 } from '@firebase/messaging';
 import {
   areCookiesEnabled,
@@ -51,6 +52,8 @@ export interface MessagingCompat {
   onBackgroundMessage(
     nextOrObserver: NextFn<MessagePayload> | Observer<MessagePayload>
   ): Unsubscribe;
+
+  setSkipForegroundNotifications(skip: boolean): void;
 }
 
 export function isSupported(): boolean {
@@ -122,5 +125,9 @@ export class MessagingCompatImpl implements MessagingCompat, _FirebaseService {
     nextOrObserver: NextFn<MessagePayload> | Observer<MessagePayload>
   ): Unsubscribe {
     return onBackgroundMessage(this._delegate, nextOrObserver);
+  }
+
+  setSkipForegroundNotifications(skip: boolean): void {
+    setSkipForegroundNotifications(this._delegate, skip);
   }
 }
