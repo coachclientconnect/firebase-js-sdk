@@ -65,6 +65,9 @@ export { Observer }
 // @public
 export function onMessage(messaging: Messaging, nextOrObserver: NextFn<MessagePayload> | Observer<MessagePayload>): Unsubscribe;
 
+// @public
+export function setSkipForegroundNotifications(messaging: Messaging, skip: boolean): void;
+
 export { Unsubscribe }
 
 
