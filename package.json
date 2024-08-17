@@ -21,12 +21,13 @@
     "performance"
   ],
   "config": {
-    "firebasejs_version": "10.11.1"
+    "firebasejs_version": "10.11.1",
+    "firebasejs_deployed_version": "10.11.1-a"
   },
   "scripts": {
     "ccc:release": "ts-node-script scripts/release/cli.ts ccc",
-    "ccc:prepublish": "find packages/firebase -type f -name 'firebase-*' -exec sed -i 's|https://www.gstatic.com|https://storage.googleapis.com/ccc-core-a-1-public|g' {} \\;",
-    "ccc:publish": "gcloud storage cp packages/firebase/firebase-* gs://ccc-core-a-1-public/firebasejs/$npm_package_config_firebasejs_version",
+    "ccc:prepublish": "find packages/firebase -type f -name 'firebase-*' -exec sed -i 's|https://www.gstatic.com/firebasejs/$npm_package_config_firebasejs_version|https://storage.googleapis.com/ccc-core-a-1-public/firebasejs/$npm_package_config_firebasejs_deployed_version|g' {} \\;",
+    "ccc:publish": "gcloud storage cp packages/firebase/firebase-* gs://ccc-core-a-1-public/firebasejs/$npm_package_config_firebasejs_deployed_version",
     "dev": "lerna run --parallel --scope @firebase/* --scope firebase dev",
     "build": "lerna run --scope @firebase/* --scope firebase build",
     "build:changed": "ts-node-script scripts/ci-test/build_changed.ts",
